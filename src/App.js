@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
+import store from './store';
 import Product from './components/Product';
 import Cart from './components/Cart';
 import Wishlist from './components/Wishlist';
@@ -10,14 +11,18 @@ const App = () => {
   const wishlist = useSelector(state => state.wishlist);
 
   return (
-    <div>
-      <h1>Shopping Cart Application</h1>
-      <Product product={{ id: 1, name: 'Product 1' }} />
-      <Product product={{ id: 2, name: 'Product 2' }} />
-      <Cart cartItems={cart} />
-      <Wishlist />
-      <Coupon />
-    </div>
+    <Provider store={store}>
+      <div className="navbar-expand-lg">
+        <div className="text-center">
+          <h1>Shopping Cart Application</h1>
+        </div>
+        <Product product={{ id: 1, name: 'Product 1' }} />
+        <Product product={{ id: 2, name: 'Product 2' }} />
+        <Cart cartItems={cart} />
+        <Wishlist />
+        <Coupon />
+      </div>
+    </Provider>
   );
 };
 
