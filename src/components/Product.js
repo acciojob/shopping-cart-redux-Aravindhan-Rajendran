@@ -14,10 +14,12 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div>
-      <h3>{product.name}</h3>
-      <button onClick={handleAddToCart}>Add to Cart</button>
-      <button onClick={handleAddToWishlist}>Add to Wishlist</button>
+    <div className="custom-card card">
+      <div className="card-body">
+        <h5 className="card-title">{product.name}</h5>
+        <button className="btn btn-primary" onClick={handleAddToCart}>Add to Cart</button>
+        <button className="btn btn-secondary" onClick={handleAddToWishlist}>Add to Wishlist</button>
+      </div>
     </div>
   );
 };
