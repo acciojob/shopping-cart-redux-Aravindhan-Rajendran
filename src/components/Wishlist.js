@@ -1,26 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { removeFromWishlist } from '../actions';
 
 const Wishlist = () => {
   const wishlist = useSelector(state => state.wishlist);
   const dispatch = useDispatch();
 
-  const handleRemoveFromWishlist = (productId) => {
-    dispatch(removeFromWishlist(productId));
-  };
-
   return (
     <div>
       <h2>Wishlist</h2>
-      <ul>
-        {wishlist.map(item => (
-          <li key={item.id}>
-            {item.name}
-            <button onClick={() => handleRemoveFromWishlist(item.id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+      {wishlist.map(item => (
+        <div key={item.id} className="wishlist-item">
+          <span>{item.name}</span>
+          <button onClick={() => dispatch(removeFromWishlist(item.id))}>Remove</button>
+        </div>
+      ))}
     </div>
   );
 };
