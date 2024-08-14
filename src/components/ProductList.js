@@ -6,9 +6,9 @@ const ProductList = ({ products }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="container">
+    <div className="container navbar-expand-lg">
       <h2>Products</h2>
-      <div className="row">
+      <div className="row text-center">
         {products.map(product => (
           <div key={product.id} className="col-md-3 custom-card card">
             <img src={product.image} alt={product.name} className="card-img-top" />
@@ -17,13 +17,13 @@ const ProductList = ({ products }) => {
               <p>${product.price.toFixed(2)}</p>
               <button
                 className="btn btn-primary"
-                onClick={() => dispatch(addToCart(product))}
+                onClick={(e) => {e.stopPropagation;dispatch(addToCart(product))}}
               >
                 Add to Cart
               </button>
               <button
                 className="btn btn-secondary"
-                onClick={() => dispatch(addToWishlist(product))}
+                onClick={(e) => {e.stopPropagation;dispatch(addToWishlist(product))}}
               >
                 Add to Wishlist
               </button>
