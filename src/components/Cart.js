@@ -10,7 +10,7 @@ const Cart = () => {
 
   return (
     <div className="container">
-      <h2>Shopping Cart</h2>
+      <h4>Shopping Cart</h4>
       {cart.map(item => (
         <div key={item.id} className="cart-item custom-card card">
           <h3>{item.name}</h3>
