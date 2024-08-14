@@ -1,19 +1,23 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, increaseQuantity, decreaseQuantity } from '../actions';
 
-const Cart = ({ cartItems }) => {
+const Cart = () => {
+  const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <h2>Cart</h2>
-      {cartItems.map(item => (
+    <div className="container">
+      <h2>Shopping Cart</h2>
+      {cart.map(item => (
         <div key={item.id} className="cart-item">
-          <span>{item.name}</span>
-          <button onClick={() => dispatch(increaseQuantity(item.id))}>+</button>
-          <button onClick={() => dispatch(decreaseQuantity(item.id))}>-</button>
-          <button onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>
+          <h3>{item.name}</h3>
+          <div>
+            <p>Quantity: {item.quantity}</p>
+            <button onClick={() => dispatch(increaseQuantity(item.id))}>+</button>
+            <button onClick={() => dispatch(decreaseQuantity(item.id))}>-</button>
+            <button onClick={() => dispatch(removeFromCart(item.id))}>Remove</button>
+          </div>
         </div>
       ))}
     </div>

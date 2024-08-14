@@ -1,29 +1,29 @@
 import React from 'react';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store';
-import Product from './components/Product';
+import ProductList from './components/ProductList';
 import Cart from './components/Cart';
 import Wishlist from './components/Wishlist';
-import Coupon from './components/Coupon';
+import Discount from './components/Discount';
+import './App.css';
 
-const App = () => {
-  const cart = useSelector(state => state.cart);
-  const wishlist = useSelector(state => state.wishlist);
+const products = [
+  { id: 1, name: 'Product 1' },
+  { id: 2, name: 'Product 2' },
+  { id: 3, name: 'Product 3' },
+];
 
+function App() {
   return (
     <Provider store={store}>
-      <div className="navbar-expand-lg">
-        <div className="text-center">
-          <h1>Shopping Cart Application</h1>
-        </div>
-        <Product product={{ id: 1, name: 'Product 1' }} />
-        <Product product={{ id: 2, name: 'Product 2' }} />
-        <Cart cartItems={cart} />
+      <div className="App">
+        <ProductList products={products} />
+        <Cart />
         <Wishlist />
-        <Coupon />
+        <Discount />
       </div>
     </Provider>
   );
-};
+}
 
 export default App;
