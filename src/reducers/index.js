@@ -1,29 +1,26 @@
 import { combineReducers } from 'redux';
-import { 
-  ADD_TO_CART, REMOVE_FROM_CART, INCREASE_QUANTITY, DECREASE_QUANTITY,
-  ADD_TO_WISHLIST, REMOVE_FROM_WISHLIST, APPLY_DISCOUNT
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY,
+  ADD_TO_WISHLIST,
+  REMOVE_FROM_WISHLIST,
+  APPLY_DISCOUNT
 } from '../actions';
 
-// Initial State
-const initialState = {
-  cart: [],
-  wishlist: [],
-  discount: 0
-};
-
-// Cart Reducer
-const cartReducer = (state = initialState.cart, action) => {
-  switch(action.type) {
+const cartReducer = (state = [], action) => {
+  switch (action.type) {
     case ADD_TO_CART:
       return [...state, { ...action.payload, quantity: 1 }];
     case REMOVE_FROM_CART:
       return state.filter(item => item.id !== action.payload);
     case INCREASE_QUANTITY:
-      return state.map(item => 
+      return state.map(item =>
         item.id === action.payload ? { ...item, quantity: item.quantity + 1 } : item
       );
     case DECREASE_QUANTITY:
-      return state.map(item => 
+      return state.map(item =>
         item.id === action.payload ? { ...item, quantity: Math.max(item.quantity - 1, 1) } : item
       );
     default:
@@ -31,9 +28,8 @@ const cartReducer = (state = initialState.cart, action) => {
   }
 };
 
-// Wishlist Reducer
-const wishlistReducer = (state = initialState.wishlist, action) => {
-  switch(action.type) {
+const wishlistReducer = (state = [], action) => {
+  switch (action.type) {
     case ADD_TO_WISHLIST:
       return [...state, action.payload];
     case REMOVE_FROM_WISHLIST:
@@ -43,22 +39,20 @@ const wishlistReducer = (state = initialState.wishlist, action) => {
   }
 };
 
-// Discount Reducer
-const discountReducer = (state = initialState.discount, action) => {
-  switch(action.type) {
+const discountReducer = (state = null, action) => {
+  switch (action.type) {
     case APPLY_DISCOUNT:
-      // Implement discount logic
-      return state; // You should calculate and return the new discount here
+      // Apply discount logic here
+      return action.payload;
     default:
       return state;
   }
 };
 
-// Combine Reducers
 const rootReducer = combineReducers({
   cart: cartReducer,
   wishlist: wishlistReducer,
-  discount: discountReducer
+  discount: discountReducer,
 });
 
 export default rootReducer;
