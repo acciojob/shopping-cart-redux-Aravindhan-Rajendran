@@ -11,11 +11,21 @@ const ProductList = ({ products }) => {
     <div className="container">
       <h2>Products</h2>
       {products.map(product => (
-        <div key={product.id} className="product">
+        <div key={product.id} className="product custom-card card">
           <h3>{product.name}</h3>
-          <div>
-            <button onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
-            <button onClick={() => dispatch(addToWishlist(product))}>Add to Wishlist</button>
+          <div className="card-body">
+            <button
+              className="btn btn-primary"
+              onClick={() => dispatch(addToCart(product))}
+            >
+              Add to Cart
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => dispatch(addToWishlist(product))}
+            >
+              Add to Wishlist
+            </button>
           </div>
         </div>
       ))}

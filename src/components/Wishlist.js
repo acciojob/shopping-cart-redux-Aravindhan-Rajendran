@@ -1,3 +1,4 @@
+// components/Wishlist.js
 
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,9 +12,16 @@ const Wishlist = () => {
     <div className="container">
       <h2>Wishlist</h2>
       {wishlist.map(item => (
-        <div key={item.id} className="wishlist-item">
+        <div key={item.id} className="wishlist-item custom-card card">
           <h3>{item.name}</h3>
-          <button onClick={() => dispatch(removeFromWishlist(item.id))}>Remove</button>
+          <div className="card-body">
+            <button
+              className="btn btn-danger remove-wishlist-btn"
+              onClick={() => dispatch(removeFromWishlist(item.id))}
+            >
+              Remove
+            </button>
+          </div>
         </div>
       ))}
     </div>
